@@ -34,6 +34,7 @@ public class JunitRunner {
     @AfterClass
     public static void tearDown() throws Exception
     {
+
         log.info("Tear down ...");
         DriverFactory.getInstance().closeDriver();
         log.info("Close driver");

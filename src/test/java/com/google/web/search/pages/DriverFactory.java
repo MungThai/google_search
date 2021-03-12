@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
@@ -55,7 +56,12 @@ public class DriverFactory {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setAcceptInsecureCerts(true);
-     //   chromeOptions.addArguments("--headless");
+
+        String OS = System.getProperty("os.name").toLowerCase();
+        if( !OS.contains("win") ) {
+           System.out.println("==== Linux ======");
+           chromeOptions.addArguments("--headless");
+        }
         chromeOptions.addArguments("--allowed-ips","--ignore-certificate-errors","--disable-web-security", "--allow-running-insecure-content");
         chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-blink-features");
