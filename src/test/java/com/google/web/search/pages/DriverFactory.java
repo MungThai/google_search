@@ -62,11 +62,12 @@ public class DriverFactory {
            System.out.println("==== Linux ======");
            chromeOptions.addArguments("--headless");
         }
+/*
         chromeOptions.addArguments("--allowed-ips","--ignore-certificate-errors","--disable-web-security", "--allow-running-insecure-content");
         chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-blink-features");
         chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
-
+*/
         webDriver = new ChromeDriver(chromeOptions);
 
         webDriver.get(utils.getProperties("webUrl"));
