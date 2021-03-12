@@ -165,12 +165,13 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
+                    <!--
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <!--
-                    <release>${java.version}</release>
-                    <compilerArgs>enable-preview</compilerArgs>
                     -->
+                    <release>${java.version}</release>
+                    <compilerArgs>--enable-preview</compilerArgs>
+
                 </configuration>
             </plugin>
             <plugin>
