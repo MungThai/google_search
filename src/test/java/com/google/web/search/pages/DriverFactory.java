@@ -58,7 +58,7 @@ public class DriverFactory {
         chromeOptions.setAcceptInsecureCerts(true);
 
         String OS = System.getProperty("os.name").toLowerCase();
-        if( !OS.contains("win") ) {
+        if( OS.contains("linux") ) {
            System.out.println("==== Linux ======");
            chromeOptions.addArguments("--headless");
         }
