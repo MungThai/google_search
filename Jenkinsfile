@@ -7,10 +7,10 @@ pipeline {
     stages {
         stage('Initialize') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+                
+                    echo "PATH = %PATH%"
+                    echo "M2_HOME = %M2_HOME%"
+                
             }
         }
         stage('Checkout') {
@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Execute') {
             steps {
-                sh 'mvn clean -Dtest=com.google.web.search.runners.JunitRunner test'
+                mvn clean -Dtest=com.google.web.search.runners.JunitRunner test
             }
             post {
                 always {
