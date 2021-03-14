@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Execute') {
             steps {
-                mvn clean -Dtest=com.google.web.search.runners.JunitRunner test
+               bat 'mvn clean -Dtest=com.google.web.search.runners.JunitRunner test'
             }
             post {
                 always {
