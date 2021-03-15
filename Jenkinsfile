@@ -29,7 +29,7 @@ pipeline {
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
                             keepAll: false,
-                            reportDir: 'htmlreports/HTML_20Report',
+                            reportDir: 'target/cucumber-reports',
                             reportFiles: 'cucumber.html',
                             reportName: "HTML Report"
                     ])
