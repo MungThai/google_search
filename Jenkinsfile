@@ -29,9 +29,9 @@ pipeline {
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
                             keepAll: true,
-                            reportDir: '',
-                            reportFiles: 'index.html',
-                            reportName: "Junit Report"
+                            reportDir: 'cucumber-reports',
+                            reportFiles: 'cucumber.html',
+                            reportName: "Cucumber Report"
                     ])
                     script {
                         junit 'target/surefire-reports/**/*.xml'
