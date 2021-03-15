@@ -36,24 +36,7 @@ pipeline {
                     ])
                     script {
                         junit 'target/surefire-reports/**/*.xml'
-                        /*
-                        emailext (
-                                body:''' 
-                                    <p>Executed: <b>${JOB_NAME}:${BUILD_NUMBER}</b></p>
-                                    <p>View <a href="${BUILD_URL}/e2e_20logs">E2E logs</a></p>
-                                    <p>
-                                        =================================================================</br>
-                                        Total Run: ${TEST_COUNTS,var="total"}</br>
-                                        <font color="green">Passed: ${TEST_COUNTS,var="pass"}</font></br>
-                                        <font color="red">Failed: ${TEST_COUNTS,var="fail"}</font></br>
-                                        =================================================================
-                                    </p>''',
-                                attachmentsPattern: "${OUTPUT}.html",
-                                mimeType: "text/html",
-                                subject: "Status: ${currentBuild.result?:'SUCCESS'} - \' ${JOB_NAME}:${BUILD_NUMBER}\'",
-                                to: 'mung.thai@gmail.com'
-                            ) */
-                        }                        
+                                                
                     }
                 }
             }
