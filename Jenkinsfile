@@ -28,10 +28,11 @@ pipeline {
                     publishHTML (target: [
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
-                            keepAll: true,
+                            keepAll: false,
                             reportDir: 'target/cucumber-reports',
                             reportFiles: 'cucumber.html',
-                            reportName: "Cucumber Report"
+                            reportName: "HTML Report",
+                            reportTitles: "Cucumber Report"
                     ])
                     script {
                         junit 'target/surefire-reports/**/*.xml'
