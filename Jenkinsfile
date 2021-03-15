@@ -24,6 +24,15 @@ pipeline {
             }
             post {
                 always {
+                    step([$class: 'JUnitResultArchiver', testResults: '**/reports/junit/*.xml', healthScaleFactor: 1.0])
+                    publishHTML (target: [
+                            allowMissing: false,
+                            alwaysLinkToLastBuild: false,
+                            keepAll: true,
+                            reportDir: 'coverage',
+                            reportFiles: 'index.html',
+                            reportName: "Junit Report"
+                    ])
                     junit 'target/surefire-reports/**/*.xml'
                 }
             }
