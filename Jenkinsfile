@@ -7,10 +7,10 @@ pipeline {
     stages {
         stage('Initialize') {
             steps {
-                
-                    echo "PATH = %PATH%"
-                    echo "M2_HOME = %M2_HOME%"
-                
+                sh '''
+                    echo "PATH = $PATH"
+                    echo "M2_HOME = $M2_HOME"
+                '''
             }
         }
         stage('Checkout') {
@@ -18,9 +18,9 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/MungThai/google_search']]])
             }
         }
-        stage('Execute') {
+        stage('Test') {
             steps {
-               bat 'mvn clean -Dtest=com.google.web.search.runners.JunitRunner test'
+               bat 'mvn clean -DfailIfNoTests=false -Dtest=com.google.web.search.runners.JunitRunner test'
             }
             post {
                 always {
@@ -28,7 +28,7 @@ pipeline {
                     publishHTML (target: [
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
-                            keepAll: false,
+                            keepAll: true,
                             reportDir: 'target/cucumber-reports',
                             reportFiles: 'cucumber.html',
                             reportName: "HTML Report"
@@ -40,5 +40,10 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+          echo "Send notifications for result: ${currentBuild.result}"
+        }
+    }    
 }
 
