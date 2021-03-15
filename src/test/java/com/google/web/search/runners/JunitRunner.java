@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/GoogleSearch.feature",
         glue = {"com.google.web.search.stepdefs"},
-        tags = "@Sanity",
+       // tags = "@Sanity",
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json"
