@@ -190,6 +190,7 @@
                     <argLine>--enable-preview</argLine>
                     <forkCount>3</forkCount>
                     <reuseForks>true</reuseForks>
+                    <useModulePath>false</useModulePath>
                     <properties>
                         <property>
                             <name>dataproviderthreadcount</name>
