@@ -29,11 +29,13 @@ pipeline {
                             allowMissing: false,
                             alwaysLinkToLastBuild: false,
                             keepAll: true,
-                            reportDir: 'coverage',
+                            reportDir: '',
                             reportFiles: 'index.html',
                             reportName: "Junit Report"
                     ])
-                    junit 'target/surefire-reports/**/*.xml'
+                    script {
+                        junit 'target/surefire-reports/**/*.xml'
+                    }
                 }
             }
         }
