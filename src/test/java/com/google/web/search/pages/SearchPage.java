@@ -1,19 +1,25 @@
 package com.google.web.search.pages;
 
-import com.google.web.search.helper.ReportPortalScreenshot;
+import com.google.web.search.helper.Screenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class SearchPage {
-    WebDriver driver;
+    protected WebDriver driver;
 
     @FindBy(name = "q")
-    public WebElement searchBox;
+    private WebElement searchBox;
 
     @FindBy(className = "LC20lb")
-    public WebElement result;
+    private WebElement result;
+
+    @FindBy(name = "btnK")
+    private WebElement btnOK;
+
+    @FindBy(xpath = "//input[@value='Google Search']")
+    private WebElement btnSearch;
 
     public SearchPage(WebDriver driver) {
         this.driver = driver;
@@ -22,21 +28,16 @@ public class SearchPage {
 
     public void setText(String text) {
         searchBox.sendKeys(text);
-        screenShot();
     }
 
     public void clickSubmit() {
-        searchBox.submit();
-        screenShot();
+        //searchBox.submit();
+       // btnOK.click();
+        btnSearch.click();
     }
 
     public String getResult() {
-        screenShot();
         return result.getText();
-    }
-
-    private void screenShot() {
-       new ReportPortalScreenshot().screenshot(driver);
     }
 
 }

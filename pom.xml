@@ -27,6 +27,14 @@
             <name>bintray</name>
             <url>http://dl.bintray.com/epam/reportportal</url>
         </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-epam-healenium</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/epam/healenium</url>
+        </repository>
     </repositories>
 
     <properties>
@@ -42,6 +50,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.epam.healenium</groupId>
+            <artifactId>healenium-web</artifactId>
+            <version>3.0.3-beta-1</version>
+        </dependency>
+
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-cucumber6</artifactId>
@@ -129,7 +143,6 @@
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -152,11 +165,7 @@
             <artifactId>maven-clean-plugin</artifactId>
             <version>3.1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>5.0.6</version>
-        </dependency>
+
     </dependencies>
 
     <build>

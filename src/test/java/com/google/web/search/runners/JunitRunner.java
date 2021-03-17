@@ -1,13 +1,18 @@
 package com.google.web.search.runners;
 
+import com.google.web.search.helper.Screenshot;
 import com.google.web.search.pages.DriverFactory;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -16,27 +21,31 @@ import org.junit.runner.RunWith;
        // tags = "@Sanity",
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber.html",
-                "json:target/cucumber-reports/cucumber.json"
+                "junit:target/cucumber-reports/cucumber.xml"
         }
 )
 
 public class JunitRunner {
-    private static final Logger log = LogManager.getLogger( JunitRunner.class );
+    private static final Logger logger = LogManager.getLogger( JunitRunner.class );
+    protected static WebDriver driver;
 
     @BeforeClass
     public static void setUp() {
-        log.info("Setup ...");
+        logger.info("Setup ...");
         DriverFactory.getInstance().setUp();
-        log.info("Initialize driver");
+        driver = DriverFactory.getInstance().getDriver();
+        logger.info("Initialize driver");
     }
 
 
-    @AfterClass
-    public static void tearDown() throws Exception
+    @Parameterized.AfterParam
+    public static void tearDown(ITestResult result) throws Exception
     {
-
-        log.info("Tear down ...");
+        logger.info("Tear down ...");
+        if( ITestResult.FAILURE == result.getStatus()) {
+//           new Screenshot().screenShot(result, driver);
+        }
         DriverFactory.getInstance().closeDriver();
-        log.info("Close driver");
+        logger.info("Close driver");
     }
 }

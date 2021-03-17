@@ -12,13 +12,13 @@ import org.testng.Assert;
 
 public class GoogleSearchSteps {
 
-    private static final Logger log = LogManager.getLogger(GoogleSearchSteps.class);
+    private final Logger logger = LogManager.getLogger(this.getClass());
     private SearchPage searchPage;
-    public static WebDriver driver;
+    protected WebDriver driver;
 
     @Given("user launches Google webapp")
     public void openBrowser() {
-        driver = DriverFactory.getInstance().getDriver();
+        this.driver = DriverFactory.getInstance().getDriver();
         searchPage = new SearchPage(driver);
     }
 
